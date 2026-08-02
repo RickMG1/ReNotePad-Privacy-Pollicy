@@ -1,44 +1,107 @@
-# Política de privacidad de ReNotePad
+# ReNotePad Privacy Policy
 
-**Última actualización:** 28 de julio de 2026
+**Last updated:** July 28, 2026
+**Applies to:** ReNotePad for Android (package `com.renotepad.app`)
 
-ReNotePad ("la app") es un editor de texto y código para Android. Esta política explica qué datos maneja la app y cómo.
+## 1. Introduction
 
-## Resumen
+This privacy policy describes how ReNotePad ("the app", "we") handles information when you use the application. ReNotePad is a general-purpose text and code editor that runs entirely on the user's device.
 
-ReNotePad **no recopila, transmite ni comparte ningún dato personal**. La app no tiene acceso a internet y no incluye analítica, publicidad ni servicios de terceros.
+Our design principle is simple: **the app doesn't need your data to work, so it doesn't collect it**. There are no user accounts, no servers we operate, and no cloud infrastructure associated with ReNotePad.
 
-## Qué datos maneja la app y dónde se guardan
+By installing and using ReNotePad, you agree to the practices described in this document.
 
-### Archivos que abres o editas
-Cuando abres, editas o guardas un archivo, ReNotePad accede a él únicamente a través del selector de archivos del sistema operativo (Storage Access Framework). La app solo lee o escribe los archivos que tú eliges explícitamente; no explora ni accede a otros archivos de tu dispositivo. El contenido de tus archivos permanece siempre en tu dispositivo y nunca sale de él.
+## 2. Data controller
 
-### Lista de archivos recientes
-Para mostrarte los últimos archivos abiertos, la app guarda localmente en tu dispositivo (en las preferencias privadas de la app) la ruta, el nombre y la fecha de apertura de cada archivo reciente (máximo 10 entradas). Esta información no sale de tu dispositivo, no se sincroniza con ningún servidor y se elimina si desinstalas la app.
+This app is developed and published by an independent developer. For any privacy-related inquiry, the point of contact is listed in Section 11.
 
-### Compartir archivos
-Si usas la función de compartir, ReNotePad entrega una copia del archivo directamente a la app que elijas (por ejemplo, correo o mensajería) mediante el mecanismo estándar de Android para compartir contenido. ReNotePad no interviene en ese envío ni conserva registro de con quién compartiste el archivo.
+## 3. Executive summary
 
-## Permisos utilizados
-
-| Permiso | Para qué se usa |
+| Question | Answer |
 |---|---|
-| Acceso a archivos mediante el selector del sistema | Abrir y guardar los documentos que eliges |
+| Does the app connect to the internet? | No. It does not request the `INTERNET` permission and cannot perform network communication. |
+| Is personal data collected? | No. |
+| Are cookies, analytics SDKs, or advertising used? | No. |
+| Does my file content ever leave the device? | No, unless you explicitly share it with another app yourself. |
+| Is there a user account? | No. |
+| Is data sold or shared with third parties? | No, because no data is collected to share in the first place. |
 
-ReNotePad no solicita acceso a tu ubicación, contactos, cámara, micrófono ni ningún otro dato sensible.
+## 4. Data categories and how they are handled
 
-## Terceros
+### 4.1 Your file content
+ReNotePad accesses a file's content only when you explicitly open it through the operating system's document picker (Storage Access Framework, "SAF"). This mechanism is managed by Android, not by the app: the operating system grants access only to the specific document you select, and ReNotePad cannot list, index, or access any other file on your storage.
 
-ReNotePad no utiliza servicios de analítica, publicidad, rastreo ni SDKs de terceros. No se envía ninguna información a servidores externos porque la app no tiene conexión a internet.
+Content is processed only in the device's memory while you edit, and written back to the same document (or another one you choose via "Save as") when you save. At no point is the content transmitted off the device, uploaded to a server, or logged to any telemetry system, because no such system exists in the app.
 
-## Menores de edad
+### 4.2 Recent files list
+For your convenience, the app keeps a local list of up to 10 recently opened files. For each entry it stores:
 
-ReNotePad no está dirigida a niños y no recopila conscientemente información de menores, ya que no recopila información de nadie.
+- The document reference (URI) granted by the system when access was allowed.
+- The file name.
+- The timestamp it was opened.
 
-## Cambios a esta política
+This data is stored in `SharedPreferences`, a private storage mechanism protected by Android's app sandboxing: no other app can read it. It is not synced to any server, and it is not included in any cloud backup unless you have Android's automatic backup feature enabled (`android:allowBackup`), in which case Android may include it in your private backup tied to your Google account — entirely under Google's and your own control, not ReNotePad's.
 
-Si esta política cambia en el futuro, se actualizará esta misma página con la nueva fecha de "Última actualización".
+You can clear this list at any time from within the app, and it is automatically removed if you uninstall ReNotePad.
 
-## Contacto
+### 4.3 Sharing files with other apps
+If you use the "Share" feature, ReNotePad hands a read-only copy of the active file to the destination app you choose, via a standard Android `FileProvider` with a temporary, single-use access grant. ReNotePad does not inspect the content of that transfer and keeps no record of which app or person the file was shared with. The privacy policy of the receiving app (e.g., your email client) applies from that point forward.
 
-Si tienes preguntas sobre esta política de privacidad, puedes escribir a: mr933580@gmail.com
+### 4.4 Data the app does NOT collect
+For clarity, ReNotePad explicitly does not collect, process, or transmit:
+
+- Device identifiers (IMEI, Android ID, advertising ID, etc.)
+- Location data
+- Contacts, calendar, or other personal information from the system
+- Biometric data
+- Payment information
+- Usage statistics, interaction events, or crash logs (no analytics or crash-reporting SDK is integrated)
+- IP address or any other network data (there is no internet connection)
+
+## 5. App permissions
+
+| Permission | Type | Purpose | Notes |
+|---|---|---|---|
+| Document access via the system picker (Storage Access Framework) | No runtime permission required | Open and save the files you explicitly choose | Access is granted per document by the user and can be revoked at any time from Android settings |
+
+ReNotePad does not declare broad storage permissions (`READ_EXTERNAL_STORAGE`, `WRITE_EXTERNAL_STORAGE`), media access (`READ_MEDIA_IMAGES`), camera, microphone, contacts, location, or any other dangerous or sensitive permission.
+
+## 6. Data sharing and disclosure to third parties
+
+ReNotePad does not share data with third parties because it does not collect data in the first place. Specifically:
+
+- No integration with advertising networks.
+- No analytics SDKs (Firebase Analytics, Google Analytics, Mixpanel, etc.).
+- No crash-reporting services (Crashlytics or otherwise).
+- No third-party services of any kind embedded in the app.
+
+## 7. Security
+
+Because ReNotePad never transmits data off the device, the risk surface is limited to the device itself. The app benefits from Android's standard sandboxing: its private data (`SharedPreferences`) is only accessible to the app itself, and access to your documents is always mediated by permissions the operating system controls, not the app.
+
+We recommend keeping your operating system up to date and using your device's own security features (screen lock, storage encryption) as an additional layer of protection for your files.
+
+## 8. Data retention
+
+- **File content:** no copy is retained anywhere outside the file you manage in your own storage.
+- **Recent files list:** retained until you manually clear it or uninstall the app.
+
+## 9. Your rights and control
+
+Because no personal information is collected on any server, there is no data for us to provide, correct, or delete under regulations such as the GDPR or CCPA — all relevant information (your files and your recent files list) is already under your direct control, on your own device. You can:
+
+- Revoke access to any document from Android's permission settings.
+- Clear the recent files list from within the app.
+- Remove all data associated with the app by uninstalling it.
+
+## 10. Children's privacy
+
+ReNotePad is not specifically directed at children and does not include any features designed to collect information from any user, including minors. Anyone can use the app with the same assurance that no personal information is collected.
+
+## 11. Changes to this policy
+
+We may update this policy to reflect changes to the app or for legal reasons. Any change will be posted on this same page with a new "Last updated" date. We encourage you to review it periodically.
+
+## 12. Contact
+
+If you have questions, concerns, or requests related to this Privacy Policy, please open an issue in the ReNotePad GitHub repository.
